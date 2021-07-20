@@ -1,0 +1,12 @@
+.home-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  ion-button {
+        width: 20vw;
+        height: 20vw;
+  }
+}
+.bindCard {
+  text-align: center;
+}

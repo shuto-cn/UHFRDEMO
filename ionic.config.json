@@ -1,0 +1,7 @@
+{
+  "name": "uhftest",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

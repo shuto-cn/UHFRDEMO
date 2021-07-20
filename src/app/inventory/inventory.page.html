@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>盘点</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!searchCardFlag" (click)="startSearchCard()">开始盘点</ion-button>
+      <ion-button *ngIf="searchCardFlag" (click)="stopSearchCard()">停止盘点</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-range min="5" max="30" color="secondary" [(ngModel)]="power">
+    <ion-label slot="start">设置功率:</ion-label>
+    <ion-label slot="end">{{power}}</ion-label>
+  </ion-range>
+  <ion-list>
+    <ion-item *ngIf="cardlist.length === 0">
+      无数据
+    </ion-item>
+    <ion-item *ngFor="let card of cardlist">
+      EPC：<ng-container *ngFor="let mEpcBytes of card.mEpcBytes">{{mEpcBytes}}, </ng-container>
+      <br>
+      名称：<ng-container>{{card.name}}</ng-container>
+      <br>
+      仓位号：<ng-container *ngFor="let attr1 of card.attr1">{{attr1}}</ng-container>
+      <br>
+      盘点时间：<ng-container *ngFor="let pdtime of card.pdtime">{{pdtime | date:'HH:mm:ss'}},
+      </ng-container>
+      <br>
+      盘点次数：<ng-container>{{card.count}}</ng-container>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

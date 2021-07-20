@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>设备详情</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!searchCardFlag" (click)="startSearchCard()">开始扫描</ion-button>
+      <ion-button *ngIf="searchCardFlag" (click)="stopSearchCard()">停止扫描</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-range min="5" max="30" color="secondary" [(ngModel)]="power">
+    <ion-label slot="start">设置功率:</ion-label>
+    <ion-label slot="end">{{power}}</ion-label>
+  </ion-range>
+  <ion-list *ngIf="!assetMsg">
+    <ion-item>无数据</ion-item>
+  </ion-list>
+  <ion-list *ngIf="assetMsg">
+    <ion-item>
+      设备名称：{{assetMsg.name}}
+    </ion-item>
+    <ion-item>
+      仓位号：{{assetMsg.attr1}}
+    </ion-item>
+    <ion-item>
+      型号：{{assetMsg.attr2}}
+    </ion-item>
+  </ion-list>
+</ion-content>

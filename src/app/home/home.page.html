@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      UHF demo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- <ion-input type="number" [(ngModel)]="power" placeholder="功率为16-26之间的整数"></ion-input>
+  <ion-button (click)="setPower()">设置功率</ion-button> -->
+  <div class="home-buttons">
+    <ion-button (click)="nav('inventory')">
+      资产盘点
+    </ion-button>
+    <ion-button (click)="nav('asset')">
+      设备详情
+    </ion-button>
+    <!-- <ion-button (click)="nav('count')">
+      计数统计
+    </ion-button> -->
+    <ion-button *ngIf="!searchCardFlag" (click)="startSearchCard()">
+      绑定新卡
+    </ion-button>
+    <ion-button *ngIf="searchCardFlag" (click)="stopSearchCard()">
+      停止扫描
+    </ion-button>
+  </div>
+  <ion-range min="5" max="30" color="secondary" [(ngModel)]="power">
+    <ion-label slot="start">设置功率:</ion-label>
+    <ion-label slot="end">{{power}}</ion-label>
+  </ion-range>
+  <ion-list *ngIf="!card && (searchCardFlag || msg)">
+    <div class="bindCard">{{msg}}</div>
+  </ion-list>
+  <ion-list *ngIf="card">
+    <ion-item>
+      <ion-label>卡号：</ion-label><span>{{card.mEpcBytes}}</span>
+    </ion-item>
+    <ion-item>
+      <ion-label>设备名称：</ion-label>
+      <ion-input placeholder="设备名称" [(ngModel)]="card.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>仓位号：</ion-label>
+      <ion-input placeholder="货架号" [(ngModel)]="card.attr1"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>型号：</ion-label>
+      <ion-input placeholder="型号" [(ngModel)]="card.attr2"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="writeCard()">写入</ion-button>
+  </ion-list>
+</ion-content>
+<!--
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button *ngIf="!searchCardFlag" (click)="singleSerchCard()">设备详情</ion-button>
+      <ion-button *ngIf="!searchCardFlag" (click)="startSearchCard()">盘点模式</ion-button>
+      <ion-button *ngIf="searchCardFlag" (click)="stopSearchCard()">停止盘点</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->
